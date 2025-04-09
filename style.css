@@ -7,7 +7,10 @@ body {
     background-color: var(--cream);
     margin: 0;
     padding-top: 247px;
+    overflow-x: hidden;
 }
+
+/* **************NAVBAR TO END OF 1ST PAGE*********** */
 
 .navbar {
     background-color: var(--cream);
@@ -194,4 +197,64 @@ spline-viewer {
     50% {
         transform: translateY(-10px) rotate(5deg);
     }
+}
+
+/* *****************************1ST PAGE FINISHH******************************* */
+
+.section-2 {
+    background-color: var(--red);
+    height: 100vh;
+    margin-top: -245px;
+}
+
+.banner {
+    position: relative;
+    top: 50px;
+    width: 70%;
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: var(--red);;
+    padding: 10px 0;
+}
+
+.banner-content {
+    display: flex;
+    gap: 80px;
+    animation: scroll 10s linear infinite;
+    white-space: nowrap;
+}
+
+.banner-content span {
+    font-family: 'Epilogue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--cream);
+    font-weight: 300;
+    opacity: 70%;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.banner::before,
+.banner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    background: linear-gradient(to right, var(--red), transparent);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.banner::after {
+    right: 0;
+    background: linear-gradient(to left, var(--red), transparent);
+    left: auto;
 }
