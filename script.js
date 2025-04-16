@@ -100,3 +100,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// random fact generator
+
+document.addEventListener("DOMContentLoaded", () => {
+    const facts = [
+        "I do a spot-on Shinchan impression.",
+        "I love all forms of art and can never stick to one.",
+        "Fav book: A Thousand Splendid Suns.",
+        "Student at IIIT Delhi, debugging life daily.",
+        "If I don’t know it yet, I’ll learn it."
+    ];
+
+    const factElement = document.getElementById("random-fact");
+    const generateButton = document.getElementById("generate-fact");
+
+    generateButton.addEventListener("click", () => {
+        const randomIndex = Math.floor(Math.random() * facts.length);
+        factElement.textContent = facts[randomIndex];
+    });
+});
+
+
+
