@@ -207,7 +207,7 @@ spline-viewer {
     position: relative;
     background-color: var(--red);
     width: 227.1vh;
-    height: 320vh;
+    height: 230vh;
     margin-top: -245px;
 }
 
@@ -443,8 +443,8 @@ spline-viewer {
 /* FLIPBOOOOK */
 .flipbg {
     position: absolute;
-    background-color: rgb(90, 18, 18);
-    top: 57%;
+    background-color: var(--darkred);
+    top: 79.5%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 1250px;
@@ -475,3 +475,185 @@ spline-viewer {
     object-fit: cover;
 }
 
+
+/* SECTION- 3 */
+
+.section-3 h2 {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    color: var(--red);
+    font-family:'Epilogue';
+    font-size: 60px;
+}
+
+/* sticky notes */
+.note-banner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--cream);
+    padding: 10px 0;
+}
+
+.note-banner-content {
+    display: flex;
+    gap: 50px;
+    animation: scroll-banner 10s linear infinite;
+    white-space: nowrap;
+}
+
+.note-banner-content img {
+    height: 300px;
+    width: auto;
+    object-fit: contain;
+}
+
+@keyframes scroll-banner {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* contact form */
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; 
+    width: 30%;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: var(--red);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    font-family: 'Epilogue', sans-serif;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--darkred);
+    color: var(--cream);
+}
+
+#contact-form input::placeholder,
+#contact-form textarea::placeholder {
+    color: rgba(236, 230, 226, 0.7);
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    border-color: var(--cream);
+    box-shadow: 0 0 8px rgba(236, 230, 226, 0.5);
+}
+
+#contact-form textarea {
+    resize: none;
+    height: 150px;
+}
+
+#contact-form button {
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-family: 'Epilogue', sans-serif;
+    background-color: var(--cream);
+    color: var(--red);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#contact-form button:hover {
+    background-color: var(--cream);
+    transform: scale(1.05);
+}
+
+#contact-form button:active {
+    transform: scale(0.95);
+}
+
+#contact-form h2 {
+    font-family: 'Epilogue', sans-serif;
+    font-size: 2rem;
+    color: var(--cream);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#contact-form p {
+    font-family: 'Epilogue', sans-serif;
+    font-size: 1rem;
+    margin-top: 0px;
+    color: var(--cream);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* social links */
+.section-4{
+    background-color: var(--red);
+    height: fit-content;
+}
+
+.link-container {
+    display: flex;
+    flex-direction: column;
+}
+  
+.link-block {
+    display: block;
+    text-align: left;
+    padding: 2rem 4rem ;
+    background-color: var(--red);
+    color: var(--cream);
+    text-decoration: none;
+    font-family: 'Epilogue';
+    font-size: 1.9rem;
+    font-weight: 800;
+    border-bottom: 1px solid var(--cream);
+    transition: background 0.4s, color 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+  
+  /* Fancy hover gradient */
+.link-block:hover {
+    background: var(--pink);
+    background-size: 400% 100%;
+    animation: gradientShift 3s ease infinite;
+    color: var(--red);
+}
+  
+@keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+}
+
+h6 {
+    text-align: center;
+    background-color: var(--red);
+    color: var(--cream);
+    font-family: 'Epilogue';
+    padding: 20px 0;
+    width: 100%;
+    margin: 0;
+}

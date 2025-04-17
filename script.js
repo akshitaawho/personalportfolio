@@ -153,5 +153,24 @@ $('#flipbook').turn({
     duration: 2000
 })
 
+// contact form
+emailjs.init("ULsrBTAlAvtF7rdsj");
+
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("contact-form");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    emailjs.sendForm("service_kmrnz89", "template_i34jydq", form)
+      .then(function () {
+        alert("I got your message, tysm for contacting me!");
+        form.reset();
+      }, function (error) {
+        alert("Oops... something went wrong.");
+        console.error("EmailJS error:", error);
+      });
+  });
+});
 
 
