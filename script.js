@@ -121,4 +121,28 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// SONGGGG
+document.addEventListener("DOMContentLoaded", () => {
+    const audio = new Audio("cleanshutup.mp3"); 
+    const audioButton = document.getElementById("play-audio");
+
+    let isPlaying = false;
+
+    audioButton.addEventListener("click", () => {
+        if (isPlaying) {
+            audio.pause(); 
+            audio.currentTime = 0; 
+            isPlaying = false;
+        } else {
+            audio.play();
+            isPlaying = true;
+        }
+    });
+
+    audio.addEventListener("ended", () => {
+        isPlaying = false;
+    });
+});
+
+
 
