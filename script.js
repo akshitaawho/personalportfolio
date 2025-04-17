@@ -144,5 +144,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// flipbook
+$('#flipbook').turn({
+    width: 1200,
+    height: 360,
+    page:1,
+    autoCenter: true,
+    duration: 2000
+})
+
 
 

@@ -204,9 +204,10 @@ spline-viewer {
 /* *****************************1ST PAGE FINISHH******************************* */
 
 .section-2 {
+    position: relative;
     background-color: var(--red);
     width: 227.1vh;
-    height: 120vh;
+    height: 320vh;
     margin-top: -245px;
 }
 
@@ -420,4 +421,57 @@ spline-viewer {
     line-height: 1.5; 
 }
 
+/* project journal title */
+
+.section-2 h2 {
+    text-align: center;
+    margin-top: 150px;
+    margin-bottom: 20px;
+    color: var(--cream);
+    font-family:'Epilogue';
+    font-size: 60px;
+}
+
+.section-2 h3 {
+    text-align: center;
+    color: var(--cream);
+    font-family:'Epilogue';
+    font-weight: 300;
+    font-size: 30px;
+}
+
+/* FLIPBOOOOK */
+.flipbg {
+    position: absolute;
+    background-color: rgb(90, 18, 18);
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1250px;
+    height: 400px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), /* Bottom shadow */
+                0 -10px 20px rgba(0, 0, 0, 0.2), /* Top shadow */
+                10px 0 20px rgba(0, 0, 0, 0.2), /* Right shadow */
+                -10px 0 20px rgba(0, 0, 0, 0.2); /* Left shadow */
+    z-index: 0;
+}
+
+#flipbook {
+    margin-top: 80px;
+    margin-left: 200px !important;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#flipbook div {
+    margin: 0 auto;
+    backface-visibility: hidden;
+   
+}
+
+#flipbook img {
+    height: 100%;
+    object-fit: cover;
+}
 
