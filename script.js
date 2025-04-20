@@ -665,9 +665,85 @@ document.addEventListener("DOMContentLoaded", () => {
                   break;
                   
               default:
-                  // For any other links, just follow the href
+                
                   window.location.href = link.href;
           }
       });
   });
+});
+
+const cursorHTML = `<div id="custom-cursor"></div>`;
+document.body.insertAdjacentHTML('beforeend', cursorHTML);
+
+const cursor = document.getElementById('custom-cursor');
+
+const cursorStyles = document.createElement('style');
+cursorStyles.innerHTML = `
+  body {
+    cursor: none; /* Hide the default cursor */
+  }
+  
+  a, button, input, textarea, [role="button"], .link-block, #generate-fact, #play-audio {
+    cursor: none; /* Hide the default cursor on interactive elements */
+  }
+  
+  #custom-cursor {
+    position: fixed;
+    width: 25px; /* Smaller size */
+    height: 25px; /* Smaller size */
+    border-radius: 50%;
+    background-color:#9DEAC5;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    mix-blend-mode: difference; /* Creates automatic contrast */
+    transition: width 0.15s, height 0.15s, background-color 0.3s;
+  }
+  
+  /* Make cursor slightly larger when hovering interactive elements */
+  .cursor-active {
+    width: 30px !important;
+    height: 30px !important;
+    background-color: #fff !important; /* White cursor for clickable items */
+  }
+`;
+document.head.appendChild(cursorStyles);
+
+// Track mouse movement
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = `${e.clientX}px`;
+  cursor.style.top = `${e.clientY}px`;
+  
+});
+
+// Change cursor appearance when hovering clickable elements
+const clickableElements = 'a, button, input, textarea, [role="button"], .link-block, #generate-fact, #play-audio';
+document.querySelectorAll(clickableElements).forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.classList.add('cursor-active');
+  });
+  
+  el.addEventListener('mouseleave', () => {
+    cursor.classList.remove('cursor-active');
+  });
+});
+
+// Handle cursor visibility when mouse leaves/enters the window
+document.addEventListener('mouseleave', () => {
+  cursor.style.display = 'none';
+});
+
+document.addEventListener('mouseenter', () => {
+  cursor.style.display = 'block';
+});
+
+// Make cursor slightly larger when clicking
+document.addEventListener('mousedown', () => {
+  cursor.style.width = '35px';
+  cursor.style.height = '35px';
+});
+
+document.addEventListener('mouseup', () => {
+  cursor.style.width = '25px';
+  cursor.style.height = '25px';
 });
