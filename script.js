@@ -345,3 +345,187 @@ document.addEventListener('DOMContentLoaded', function() {
     const updatedViewers = activeViewers.filter(v => v.id !== visitorId);
     localStorage.setItem('activeViewers', JSON.stringify(updatedViewers));
   }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const assistantButton = document.getElementById("assistant-button");
+    const chatbotContainer = document.getElementById("chatbot-container");
+    const closeButton = document.getElementById("close-chatbot");
+    const messageArea = document.getElementById("chatbot-messages");
+    const optionsArea = document.getElementById("chatbot-options");
+    
+    // Enhanced conversation data
+    const conversationData = {
+        welcome: {
+            message: "Hi there! I can help you navigate. Ask me:",
+            options: [
+                { text: "Who are you?", next: "about" },
+                { text: "What projects have you done?", next: "projects" },
+                { text: "How can I contact you?", next: "contact" },
+                { text: "Tell me a fun fact!", next: "fact" }
+            ]
+        },
+        about: {
+            message: "I'm Akshitaa's portfolio assistant! I'm here to help you find information about her work and experience.",
+            options: [
+                { text: "What technologies does she use?", next: "tech" },
+                { text: "See projects", next: "projects" },
+                { text: "Contact options", next: "contact" }
+            ]
+        },
+        projects: {
+            message: "Here are some highlighted projects:",
+            options: [
+                { text: "Chrome Bookmarks Extension", next: "chrome" },
+                { text: "Gaming Arcade Machine", next: "arcade" },
+                { text: "Angry Birds Remake", next: "angrybirds" },
+                { text: "About Akshitaa", next: "about" }
+            ]
+        },
+        contact: {
+            message: "You can reach out through:",
+            options: [
+                { text: "Open contact form", action: "openForm" },
+                { text: "Visit LinkedIn", action: "openLinkedIn" },
+                { text: "Check GitHub", action: "openGitHub" },
+                { text: "See projects", next: "projects" }
+            ]
+        },
+        fact: {
+            message: getRandomFact(),
+            options: [
+                { text: "Another fact!", next: "fact" },
+                { text: "See projects", next: "projects" },
+                { text: "Contact options", next: "contact" }
+            ]
+        },
+        // Detailed project information
+        chrome: {
+            message: "Chrome Bookmarks Extension:<br><br>A website and chrome extension to save important links, similar to chrome's bookmarks tab using HTML, CSS, JS and Firebase.",
+            options: [
+                { text: "Other projects", next: "projects" },
+                { text: "Technologies used", next: "tech" }
+            ]
+        },
+        arcade: {
+            message: "Gaming Arcade Machine:<br><br>Arcade Machine system with battleship and jumbled words using Python libraries and MySQL.",
+            options: [
+                { text: "Other projects", next: "projects" },
+                { text: "About Akshitaa", next: "about" }
+            ]
+        },
+        tech: {
+            message: "Main technologies I use:<br><br>- HTML/CSS/JavaScript<br>- Python<br>- Java<br>- MySQL<br>- Git",
+            options: [
+                { text: "See projects using these", next: "projects" },
+                { text: "Contact me", next: "contact" }
+            ]
+        }
+    };
+
+    // Toggle chatbot visibility
+    assistantButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        chatbotContainer.classList.toggle("chatbot-visible");
+        if (chatbotContainer.classList.contains("chatbot-visible")) {
+            loadConversation("welcome");
+        }
+    });
+
+    closeButton.addEventListener("click", () => {
+        chatbotContainer.classList.remove("chatbot-visible");
+    });
+
+    // Load conversation state
+    function loadConversation(state) {
+        const convo = conversationData[state];
+        
+        // Add new message
+        const messageDiv = document.createElement("div");
+        messageDiv.className = "chat-message bot-message";
+        messageDiv.innerHTML = convo.message;
+        messageArea.appendChild(messageDiv);
+        
+        // Clear options and add new ones
+        optionsArea.innerHTML = '';
+        convo.options.forEach(option => {
+            const button = document.createElement("button");
+            button.className = "chat-option";
+            button.textContent = option.text;
+            
+            if (option.action) {
+                button.addEventListener("click", () => {
+                    // Add user's choice to chat
+                    addUserMessage(option.text);
+                    handleAction(option.action);
+                });
+            } else {
+                button.addEventListener("click", () => {
+                    // Add user's choice to chat
+                    addUserMessage(option.text);
+                    loadConversation(option.next);
+                });
+            }
+            
+            optionsArea.appendChild(button);
+        });
+        
+        // Scroll to bottom
+        messageArea.scrollTop = messageArea.scrollHeight;
+    }
+
+    // Add user message to chat
+    function addUserMessage(text) {
+        const userDiv = document.createElement("div");
+        userDiv.className = "chat-message user-message";
+        userDiv.textContent = text;
+        messageArea.appendChild(userDiv);
+    }
+
+    // Handle special actions
+    function handleAction(action) {
+        const actionDiv = document.createElement("div");
+        actionDiv.className = "chat-message bot-message";
+        
+        switch(action) {
+            case "openForm":
+                actionDiv.innerHTML = "Taking you to the contact form...";
+                messageArea.appendChild(actionDiv);
+                setTimeout(() => {
+                    document.querySelector('#contact-form').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    chatbotContainer.classList.remove("chatbot-visible");
+                }, 800);
+                break;
+                
+            case "openLinkedIn":
+                actionDiv.innerHTML = "Opening LinkedIn profile...";
+                messageArea.appendChild(actionDiv);
+                setTimeout(() => {
+                    window.open("https://www.linkedin.com/in/akshitaasahoo", "_blank");
+                }, 800);
+                break;
+                
+            case "openGitHub":
+                actionDiv.innerHTML = "Opening GitHub profile...";
+                messageArea.appendChild(actionDiv);
+                setTimeout(() => {
+                    window.open("https://github.com/akshitaawho", "_blank");
+                }, 800);
+                break;
+        }
+        
+        messageArea.scrollTop = messageArea.scrollHeight;
+    }
+
+    function getRandomFact() {
+        const facts = [
+            "I do a spot-on Shinchan impression.",
+            "I love all forms of art and can never stick to one.",
+            "Fav book: A Thousand Splendid Suns.",
+            "Student at IIIT Delhi, debugging life daily.",
+            "If I don't know it yet, I'll learn it."
+        ];
+        return facts[Math.floor(Math.random() * facts.length)];
+    }
+});
