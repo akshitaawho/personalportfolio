@@ -529,3 +529,54 @@ document.addEventListener('DOMContentLoaded', function() {
         return facts[Math.floor(Math.random() * facts.length)];
     }
 });
+
+// Scroll Animation Functionality
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize scroll animations
+  initScrollAnimations();
+  
+  // Add scroll event listener
+  window.addEventListener('scroll', initScrollAnimations);
+});
+
+function initScrollAnimations() {
+  const elements = document.querySelectorAll('[data-scroll]');
+  const windowHeight = window.innerHeight;
+  const triggerOffset = windowHeight * 0.8; // Adjust when animation triggers
+  
+  elements.forEach((element) => {
+      const elementPosition = element.getBoundingClientRect().top;
+      
+      if (elementPosition < triggerOffset) {
+          element.setAttribute('data-scroll', 'in');
+      }
+  });
+}
+
+// Run once on page load
+initScrollAnimations();
+
+function initScrollAnimations() {
+  // Check if mobile device (you can adjust the breakpoint as needed)
+  if (window.innerWidth < 768) {
+      // Mobile view - immediately show all elements
+      const elements = document.querySelectorAll('[data-scroll]');
+      elements.forEach((element) => {
+          element.setAttribute('data-scroll', 'in');
+      });
+      return; // Exit the function
+  }
+  
+  // Desktop view - normal scroll animation logic
+  const elements = document.querySelectorAll('[data-scroll]');
+  const windowHeight = window.innerHeight;
+  const triggerOffset = windowHeight * 0.8;
+  
+  elements.forEach((element) => {
+      const elementPosition = element.getBoundingClientRect().top;
+      
+      if (elementPosition < triggerOffset) {
+          element.setAttribute('data-scroll', 'in');
+      }
+  });
+}
