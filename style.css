@@ -649,22 +649,18 @@ spline-viewer {
 
 /* Media Queries */
 @media (max-width: 768px) {
-    /* Hide flipbook on mobile */
     .flipbook-container {
         display: none;
     }
     
-    /* Show mobile timeline instead */
     .mobile-timeline {
         display: block;
     }
     
-    /* Adjust section spacing */
     .section-2 h3 {
         margin-bottom: 40px;
     }
     
-    /* Change subheading text to match the timeline approach */
     .section-2 h3 {
         content: "scroll through my projects";
     }
@@ -1187,7 +1183,6 @@ h6 {
     }
 }
 
-/* Mobile view - ensure all elements are visible by default */
 @media (max-width: 767px) {
     [data-scroll] {
         opacity: 1 !important;

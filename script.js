@@ -661,7 +661,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   break;
                   
               case "assistant":
-                  // This will be handled by your existing chatbot code
+                 
                   break;
                   
               default:
