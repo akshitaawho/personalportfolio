@@ -580,3 +580,94 @@ function initScrollAnimations() {
       }
   });
 }
+
+// Smooth scrolling functionality
+document.addEventListener("DOMContentLoaded", () => {
+  // Contact Me button
+  const contactButton = document.querySelector(".btn-1");
+  if (contactButton) {
+      contactButton.addEventListener("click", (e) => {
+          e.preventDefault();
+          const contactSection = document.getElementById("contact-section");
+          if (contactSection) {
+              contactSection.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start"
+              });
+          }
+      });
+  }
+
+  // Explore My Work button
+  const exploreButton = document.querySelector(".btn-2");
+  if (exploreButton) {
+      exploreButton.addEventListener("click", (e) => {
+          e.preventDefault();
+          const projectsSection = document.getElementById("projects-section");
+          if (projectsSection) {
+              projectsSection.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start"
+              });
+          }
+      });
+  }
+});
+
+// Navbar scroll functionality
+document.addEventListener("DOMContentLoaded", () => {
+  const navbarLinks = document.querySelectorAll(".navbar a");
+  
+  navbarLinks.forEach(link => {
+      link.addEventListener("click", (e) => {
+          e.preventDefault();
+          
+          const targetId = link.textContent.trim().toLowerCase();
+          
+          switch(targetId) {
+              case "home":
+                  // Reload the page to go to top
+                  window.location.href = window.location.pathname;
+                  break;
+                  
+              case "about":
+                  const aboutSection = document.getElementById("about-section");
+                  if (aboutSection) {
+                      aboutSection.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start"
+                      });
+                  }
+                  break;
+                  
+              case "projects":
+                  const projectsSection = document.getElementById("projects-section");
+                  if (projectsSection) {
+                      projectsSection.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start"
+                      });
+                  }
+                  break;
+                  
+              case "contact":
+                  const contactSection = document.getElementById("contact-section");
+                  if (contactSection) {
+                      contactSection.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start"
+                      });
+                  }
+                  break;
+                  
+              case "assistant":
+                  // This will be handled by your existing chatbot code
+                  break;
+                  
+              default:
+                  // For any other links, just follow the href
+                  window.location.href = link.href;
+          }
+      });
+  });
+});
